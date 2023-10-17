@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Img from '~/assets/images/Cover-50-Blog.jpg'
 const BlogTagItem = () => {
   return (
-    <Link to={'/'} className='h-full relative group overflow-hidden'>
+    <Link to={'/blog/bi-quyet-so-huu-lan-da-dep-o-tuoi-50'} className='h-full relative group overflow-hidden'>
       <img
         className='group-hover:scale-110 duration-500  transition-all w-full h-full object-cover'
         src={Img}

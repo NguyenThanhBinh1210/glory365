@@ -4,7 +4,7 @@ const BlogTip = () => {
   return (
     <div className='pt-7'>
       <div className='md:px-3 lg:px-0 lg:max-w-[1180px] lg:mx-auto'>
-        <h4 className='uppercase text-[20px] py-4 text-center font-semibold'>BLOG & TIPS</h4>
+        <h4 className='uppercase text-[20px] py-4 text-center font-semibold'> & TIPS</h4>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5'>
           <BlogHomeItem></BlogHomeItem>
           <BlogHomeItem></BlogHomeItem>

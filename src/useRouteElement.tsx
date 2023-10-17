@@ -7,6 +7,7 @@ import Blog from './pages/Blog'
 import Terms from './pages/Terms'
 import Delivery from './pages/Delivery'
 import Return from './pages/Return'
+import BlogDetail from './pages/BlogDetail'
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,14 @@ const router = createBrowserRouter([
     element: (
       <HomeLayout>
         <Blog />
+      </HomeLayout>
+    )
+  },
+  {
+    path: '/blog/:id',
+    element: (
+      <HomeLayout>
+        <BlogDetail />
       </HomeLayout>
     )
   },
