@@ -3,7 +3,7 @@ import Anh from '~/assets/images/Cover-50-Blog-300x165.jpg'
 
 const BlogHomeItem = () => {
   return (
-    <Link to={'/'}>
+    <Link to={'/blog/bi-quyet-so-huu-lan-da-dep-o-tuoi-50'}>
       <div className='rounded-xl overflow-hidden'>
         <img className='w-full h-full object-cover' src={Anh} alt='anh' />
       </div>
