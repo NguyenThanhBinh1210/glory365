@@ -4,7 +4,7 @@ const ProductItem = () => {
   return (
     <Link to={'/'}>
       <div className='rounded-lg overflow-hidden'>
-        <img src='	https://shop.glo365.vn/wp-content/uploads/2021/12/HydraFirmEyeCream.jpg' alt='ing' />
+        <img src='https://shop.glo365.vn/wp-content/uploads/2021/12/HydraFirmEyeCream.jpg' alt='ing' />
       </div>
       <div className='p-6 text-center'>
         <h4 className='text-sm font-semibold leading-5'>KEM DƯỠNG MẮT HYDRAFIRM EYE BRIGHTENING REPAIR </h4>

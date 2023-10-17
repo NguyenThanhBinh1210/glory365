@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 
-const contentMenu = [
+// eslint-disable-next-line react-refresh/only-export-components
+export const contentMenu = [
   {
     path: '/',
     title: 'Trang chủ'
@@ -33,17 +34,17 @@ const MenuHeader = () => {
             {item.title}
           </NavLink>
         ))}
-        <div className='relative group cursor-pointer'>
+        <div className='relative z-10 bg-white group cursor-pointer'>
           <h4>Brand</h4>
-          <ul className='opacity-0 z-10 invisible left-[-20px] transition-all duration-500 top-8 group-hover:opacity-100 group-hover:visible absolute bg-white'>
+          <ul className='opacity-0  w-full invisible left-[-20px] transition-all duration-500 top-8 group-hover:opacity-100 group-hover:visible absolute bg-white'>
             <div className='absolute bg-transparent group-hover:h-[30px] top-[-30px] w-[70px] '></div>
-            <li className='p-3 min-w-[200px]  hover:bg-[#54595F] hover:text-white transition-all'>
+            <li className='p-3 min-w-[200px]  bg-white  hover:bg-[#54595F] hover:text-white transition-all'>
               <Link to={'/'}>Nguyen thanh binh</Link>
             </li>
-            <li className='p-3 min-w-[200px]  hover:bg-[#54595F] hover:text-white transition-all'>
+            <li className='p-3 min-w-[200px]  bg-white hover:bg-[#54595F] hover:text-white transition-all'>
               <Link to={'/'}>Trinh cong son</Link>
             </li>
-            <li className='p-3 min-w-[200px]  hover:bg-[#54595F] hover:text-white transition-all'>
+            <li className='p-3 min-w-[200px]  bg-white hover:bg-[#54595F] hover:text-white transition-all'>
               <Link to={'/'}>Doan van hau</Link>
             </li>
           </ul>

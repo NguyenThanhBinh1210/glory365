@@ -8,6 +8,7 @@ import Terms from './pages/Terms'
 import Delivery from './pages/Delivery'
 import Return from './pages/Return'
 import BlogDetail from './pages/BlogDetail'
+import ProductDetail from './pages/ProductDetail'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
     element: (
       <HomeLayout>
         <Store />
+      </HomeLayout>
+    )
+  },
+  {
+    path: '/cua-hang/:id',
+    element: (
+      <HomeLayout>
+        <ProductDetail />
       </HomeLayout>
     )
   },
