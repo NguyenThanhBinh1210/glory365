@@ -35,7 +35,7 @@ const MenuHeader = () => {
         ))}
         <div className='relative group cursor-pointer'>
           <h4>Brand</h4>
-          <ul className='hidden left-[-20px] top-8 group-hover:block absolute bg-white'>
+          <ul className='opacity-0 z-10 invisible left-[-20px] transition-all duration-500 top-8 group-hover:opacity-100 group-hover:visible absolute bg-white'>
             <div className='absolute bg-transparent group-hover:h-[30px] top-[-30px] w-[70px] '></div>
             <li className='p-3 min-w-[200px]  hover:bg-[#54595F] hover:text-white transition-all'>
               <Link to={'/'}>Nguyen thanh binh</Link>

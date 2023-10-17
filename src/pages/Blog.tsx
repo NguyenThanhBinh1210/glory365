@@ -33,7 +33,6 @@ const Blog = () => {
             // onClick={() => handlePageChange(currentPage - 1)}
             className='flex items-center gap-x-1 justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700  '
           >
-
             <svg
               className='w-3 h-3'
               aria-hidden='true'
