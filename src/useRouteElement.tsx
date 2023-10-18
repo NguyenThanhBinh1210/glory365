@@ -9,6 +9,7 @@ import Delivery from './pages/Delivery'
 import Return from './pages/Return'
 import BlogDetail from './pages/BlogDetail'
 import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
     element: (
       <HomeLayout>
         <Store />
+      </HomeLayout>
+    )
+  },
+  {
+    path: '/gio-hang',
+    element: (
+      <HomeLayout>
+        <Cart />
       </HomeLayout>
     )
   },
