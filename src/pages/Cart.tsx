@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
 import { getCartFromLS } from '~/utils/utils'
 
 const Cart = () => {
