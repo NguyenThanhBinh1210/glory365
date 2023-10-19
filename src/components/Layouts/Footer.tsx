@@ -1,6 +1,47 @@
 import { Link } from 'react-router-dom'
-
+import { useRef } from 'react'
 const Footer = () => {
+  const formRef = useRef<HTMLFormElement | null>(null)
+
+  function validateEmail(email: string) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+    return emailPattern.test(email)
+  }
+
+  const handleSubmit = (e: React.MouseEvent) => {
+    e.preventDefault()
+
+    if (!formRef.current) return
+
+    const formData = new FormData(formRef.current)
+    const emailInput = formData.get('email') as string | null
+    if (!emailInput || !validateEmail(emailInput)) {
+      alert('Email không hợp lệ. Vui lòng nhập email hợp lệ.')
+      return
+    }
+
+    const data = {
+      email: emailInput,
+    }
+
+    fetch('https://api-glory365.onrender.com/api/v1/message/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Gửi email thành công')
+        } else {
+          alert('Có lỗi xảy ra khi gửi thông tin')
+        }
+      })
+      .catch((error) => {
+        console.error('Lỗi:', error)
+      })
+  }
   const contentFooter = [
     {
       title: 'Thông tin',
@@ -86,15 +127,18 @@ const Footer = () => {
           <p className='text-[14.6px] leading-5 text-[rgba(0,0,0,0.79)]'>
             Đăng ký các mẹo chăm sóc da, lời khuyên từ chuyên gia và các sự kiện từ Glo365.vn
           </p>
-          <form className='flex mt-3 flex-col items-start gap-y-3'>
+          <form 
+            ref={formRef} autoComplete='false' action='#'
+            className='flex mt-3 flex-col items-start gap-y-3'>
             <input
               id='name'
               type='text'
+              name="email"
               className='w-full px-2 py-1 h-[33px] bg-transparent border text-[14px] border-black focus:border-[1.5px] transition-all rounded-full outline-none'
               placeholder='Email'
             />
             <button
-              type='submit'
+              type="submit" onClick={handleSubmit}
               className='uppercase h-[33px] rounded-full py-1 text-[14px] w-full bg-black text-white'
             >
               Đăng ký

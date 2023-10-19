@@ -46,7 +46,7 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: '/cua-hang/:id',
+    path: '/cua-hang/:slug',
     element: (
       <HomeLayout>
         <ProductDetail />

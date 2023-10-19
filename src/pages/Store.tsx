@@ -59,10 +59,6 @@ const Store = () => {
         </div>
         <div className='col-span-5 gap-y-4 gap-x-6 lg:col-span-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           <ProductLinkItem />
-          <ProductLinkItem />
-          <ProductLinkItem />
-          <ProductLinkItem />
-          <ProductLinkItem />
         </div>
       </div>
       <nav aria-label='Page navigation example' className=' w-max mx-auto mt-3 flex justify-center'>

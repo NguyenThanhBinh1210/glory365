@@ -1,8 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getCartFromLS } from '~/utils/utils'
-
+import { getCartFromLS, setCartFromLS } from '~/utils/utils'
+import  {useState} from "react";
+function formatCurrency(price: number): string {
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(price);
+}
 const Cart = () => {
   const carts = getCartFromLS()
+  const [cartState, setCartState] = useState(carts);
+
+  function removeItem(index: number) {
+    const updatedCarts = [...cartState];
+    updatedCarts.splice(index, 1);
+    setCartState(updatedCarts);
+    setCartFromLS(updatedCarts);
+  }
   function calculateTotalPrice(data: any) {
     let total = 0
     for (const product of data) {
@@ -19,13 +33,19 @@ const Cart = () => {
         {carts.map((item: any, index: number) => (
           <div className='border rounded-md' key={index}>
             <div className='flex justify-center py-2'>
-              <div className=' hover:border-black cursor-pointer  rounded-full flex items-center justify-center w-[30px] h-[30px] border'>
+              <div 
+                onClick={() => removeItem(index)} 
+                className=' hover:border-black cursor-pointer  rounded-full flex items-center justify-center w-[30px] h-[30px] border'>
                 x
               </div>
             </div>
             <div className='flex justify-between border-t py-2 px-2'>
+              <div>Hình ảnh</div>
+              <div>{item.image}</div>
+            </div>
+            <div className='flex justify-between border-t py-2 px-2'>
               <div>Sản phẩm</div>
-              <div>{item.name}</div>
+              <div>{item.title}</div>
             </div>
             <div className='flex justify-between border-t py-2 px-2'>
               <div>Giá</div>
@@ -55,7 +75,7 @@ const Cart = () => {
           <thead>
             <tr>
               <th className='border-gray-300 border py-2.5 font-bold'></th>
-              <th className='border-gray-300 border py-2.5 font-bold'></th>
+              <th className='border-gray-300 border py-2.5 font-bold'>Hình ảnh</th>
               <th className='border-gray-300 border py-2.5 font-bold'>Sản phẩm</th>
               <th className='border-gray-300 border py-2.5 font-bold'>Giá </th>
               <th className='border-gray-300 border py-2.5 font-bold'>Số lượng</th>
@@ -66,17 +86,19 @@ const Cart = () => {
             {carts.map((item: any, index: number) => (
               <tr key={index}>
                 <td className='text-center p-5 bg-slate-100 border-gray-300 border'>
-                  <div className=' hover:border-black cursor-pointer  rounded-full flex items-center justify-center w-[30px] h-[30px] border'>
+                  <div 
+                    onClick={() => removeItem(index)} 
+                    className=' hover:border-black cursor-pointer  rounded-full flex items-center justify-center w-[30px] h-[30px] border'>
                     x
                   </div>
                 </td>
                 <td className='text-center p-5 bg-slate-100 border-gray-300 border'>
                   <div className=' rounded-lg overflow-hidden w-[60px] h-[60px]'>
-                    <img src='https://shop.glo365.vn/wp-content/uploads/2021/12/AcneControl-300x300.jpg' alt='' />
+                    <img src={item.image} alt='' />
                   </div>
                 </td>
-                <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{item.name}</td>
-                <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{item.price}đ</td>
+                <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{item.title}</td>
+                <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{formatCurrency(item.price)}</td>
                 <td className='text-center p-5 bg-slate-100 border-gray-300 border'>
                   {' '}
                   <input
@@ -85,7 +107,7 @@ const Cart = () => {
                     type='number'
                   />
                 </td>
-                <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{item.price}đ</td>
+                <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{formatCurrency(item.price)}</td>
               </tr>
             ))}
           </tbody>
@@ -107,7 +129,7 @@ const Cart = () => {
         <div className='border rounded-md'>
           <div className='flex justify-between border-t py-2 px-2'>
             <div>Tạm tính</div>
-            <div>{totalPrice}đ</div>
+            <div>{formatCurrency(totalPrice)}</div>
           </div>
           <div className='flex justify-between border-t py-2 px-2'>
             <div>Giao hàng</div>
@@ -121,7 +143,7 @@ const Cart = () => {
           </div>
           <div className='flex justify-between border-t py-2 px-2'>
             <div>Tổng</div>
-            <div>{totalPrice}đ</div>
+            <div>{formatCurrency(totalPrice)}</div>
           </div>
         </div>
         <div className='flex mt-3 justify-center py-2 '>

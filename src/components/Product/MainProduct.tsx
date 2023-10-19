@@ -1,103 +1,119 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
-import Img from '~/assets/images/Rozatrol-300x300.jpg'
-import Collapse from '../Collapse'
-import { getCartFromLS, setCartFromLS } from '~/utils/utils'
-import { Link } from 'react-router-dom'
-const MainProduct = () => {
-  const dataCollapse = [
-    {
-      title: 'size',
-      content: '27ml (1 hộp gồm 3 miếng)'
-    },
-    {
-      title: 'CÁCH DÙNG',
-      content:
-        'Đắp mặt nạ sau khi rửa mặt thật sạch. Bước 1. Mặt nạ bao gồm 3 lớp. Mở mặt nạ ra. Loại bỏ lớp ngọc trai trắng ngoài cùng. Bước 2. Đắp lên mặt 2 lớp còn lại. Điều chỉnh mặt nạ cho phù hợp. Bước 3. Thảo bỏ lớp mặt nạ màu xanh ngoài cùng, thư giãn và để mặt nạ trong cùng trên mặt trong khoảng 10-15 phút, sau đó tháo bỏ. Bước 4. Dùng các ngón tay nhẹ nhàng mát-xa cho đến khi tinh chất được hấp thụ hoàn toàn. Không cần rửa mặt lại.'
-    },
-    {
-      title: 'THÀNH PHẦN CHÍNH',
-      content:
-        'Purified Water, Butylene Glycol, Polyquaternium-39, Methylparaben, Propylparaben, Sea Silt Extract, Phenoxyethanol, Ethylhexylglycerin, Chondruscrispus (Carrageenan), Propylene Glycol, Citric Acid, Niacinamide, Peg-60 Hydrogenated Castor Oil, Glycerin, Panthenol, Glycosyl Trehalose, Hydrogenated Starch Hydrolysate, Jojoba Wax Peg-120 Esters, Tranexamic Acid, Chlorphenesin, Dipotassium Glycyrrhizate, Allantoin, Ascorbyl Glucoside, Saxifraga Sarmentosa Extract, Vitisvinifera (Grape) Fruit Extract, Butylene Glycol, Morus Alba Root Extract, Scutellaria Baicalensis Root Extract, Disodium EDTA, Arginine, Xanthan Gum, Sodium Hyaluronate, Sodium Polyacrylate, Aloe Barbadensis Leaf Extract, Hydrolyzed Sodium Hyaluronate'
-    },
-    {
-      title: 'LƯU Ý',
-      content:
-        'Không sử dụng khi có tiền lệ kích ứng với thành phần của sản phẩm. Hiệu quả khác nhau phụ thuộc vào cơ địa của mỗi người. Nên bảo quản ở ngăn mát tủ lạnh, tránh trực tiếp ánh nắng mặt trời.'
-    }
-  ]
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import Collapse from "../Collapse";
+import { getCartFromLS, setCartFromLS } from "~/utils/utils";
+interface Product {
+  _id: string;
+  title: string;
+  image: string;
+  price: number;
+  priceOld: number;
+  description: string;
+}
+function formatCurrency(price: number): string {
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(price);
+}
+const MainProduct: React.FC = () => {
+  const [product, setProduct] = useState<Product | null>(null)
+  const { slug } = useParams<{ slug: string }>()
+  useEffect(() => {
+    console.log("Slug:", slug);
+    fetch(
+      `https://api-glory365.onrender.com/api/v1/product/get-detail-product?slug=${slug}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((error) => {
+        console.error("Lỗi khi lấy sản phẩm từ API", error);
+      });
+  }, [slug]);
+  // const [cartState, setCartState] = React.useState<Product[]>([]);
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cartState, _] = React.useState(getCartFromLS())
-  const [quantity, setQuantity] = React.useState(1)
-  const [showCart, setShowCart] = React.useState(false)
-
-  const data = {
-    name: 'MIROKAL ULTRA WHITENING MASK BOX',
-    price: '2199000',
-    quantity: quantity,
-    img: 'ádsd'
-  }
+  const [quantity, setQuantity] = React.useState(1);
+  const [showCart, setShowCart] = React.useState(false);
 
   const handleAddToCart = () => {
-    const newData = [...cartState]
-    newData.push(data)
-    setCartFromLS(newData)
-    setShowCart(true)
-  }
+    // const datas = 0
+    if (product) {
+      const updatedCart = [...cartState];
+      updatedCart.push(product);
+      setCartFromLS(updatedCart);
+      setShowCart(true);
+    }
+  };
+
   return (
-    <div className='px-3 lg:px-0 max-w-[1180px] mx-auto '>
+    <div className="px-3 lg:px-0 max-w-[1180px] mx-auto">
       {showCart && (
-        <div className='bg-[#f6f5f8] mt-3 pt-5 pb-5 flex justify-between px-4 gap-x-2'>
-          <div className='flex items-center'>{data.name} đã được thêm vào giỏ hàng.</div>
-          <button className='bg-[#cacaca] w-[200px] h-[40px] rounded-md'>
-            <Link to={'/gio-hang'} >Xem giỏ hàng</Link>
+        <div className="bg-[#f6f5f8] mt-3 pt-5 pb-5 flex justify-between px-4 gap-x-2">
+          <div className="flex items-center">
+            {product ? `${product.title} đã được thêm vào giỏ hàng.` : ""}
+          </div>
+          <button className="bg-[#cacaca] w-[200px] h-[40px] rounded-md">
+            <Link to="/gio-hang">Xem giỏ hàng</Link>
           </button>
         </div>
       )}
-      <div className='flex pt-7 flex-col md:grid md:grid-cols-2 md:gap-x-10'>
-        <div className='rounded-xl h-[570px]  overflow-hidden '>
-          <img className='w-full h-full object-cover' src={Img} alt='ImgBanner' />
-        </div>
-        <div className='lg:px-3'>
-          <h2 className=' text-[19px] mt-10 mb-7 font-semibold uppercase md:mt-0'>MIROKAL ULTRA WHITENING MASK BOX</h2>
-          <div className='flex text-sm pb-4 gap-x-1 text-[21px]'>
-            <div className='relative'>
-              <span className='text-[#FFABAB] font-bold'>2.599.000đ</span>
-              <div className='absolute w-full h-[2px] top-[50%] bg-[#FFABAB]'></div>
-            </div>
-            <div className='relative'>
-              <span className='font-bold'> 2.199.000đ</span>
-              <div className='absolute w-full h-[2px] bottom-[-1px] bg-black'></div>
-            </div>
-          </div>
-          <p className='text-sm'>
-            Sự kết hợp của nhiều thành phần làm trắng hiệu quả, với chiết xuất khoáng sông băng Canada chất lượng cao,
-            axit hyaluronic đa phân tử và chiết xuất thực vật tự nhiên tạo thành một công thức thân thiện với làn da.
-            Mặt nạ dưỡng da Ultra Whitening Mask giúp: Cung cấp dưỡng chất làm đều màu da, làm sáng tông màu da, dưỡng
-            ẩm và tạo thành một lớp bảo vệ trên da, giúp giảm các dấu hiệu khô và bong da, làm mờ nếp nhăn và làm mờ các
-            vết đốm trên da, giảm thiểu tình trạng lỗ chân lông to, mang lại làn da mịn màng, sáng bóng và tươi tắn.
-          </p>
-          <p className='text-sm my-6 mb-10'>Quy cách đóng gói: Hộp 3 miếng.</p>
-          <div className='flex gap-x-3 '>
-            <input
-              value={quantity}
-              onChange={(e: any) => setQuantity(e.target.value)}
-              className='w-[10%] border p-2 focus:border-black rounded-md'
-              type='number'
+      {product && (
+        <div className="flex pt-7 flex-col md:grid md:grid-cols-2 md:gap-x-10">
+          <div className="rounded-xl h-[570px] overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              src={product.image}
+              alt="ImgBanner"
             />
-            <button onClick={handleAddToCart} className='bg-black w-full text-white hover:opacity-80 rounded-md'>
-              Thêm vào giỏ hàng
-            </button>
           </div>
-          <div className='flex flex-col gap-y-3 mt-5'>
-            {dataCollapse.map((item, index) => (
-              <Collapse key={index} data={item} index={index} />
-            ))}
+          <div className="lg:px-3">
+            <h2 className="text-[19px] mt-10 mb-7 font-semibold uppercase md:mt-0">
+              {product.title}
+            </h2>
+            <div className="flex text-sm pb-4 gap-x-1 text-[21px]">
+              {product.priceOld ||
+                (product.priceOld > 0 && (
+                  <div className="relative">
+                    <span className="text-[#FFABAB] font-bold">
+                      {formatCurrency(product.priceOld)}
+                    </span>
+                    <div className="absolute w-full h-[2px] top-[50%] bg-[#FFABAB]"></div>
+                  </div>
+                ))}
+
+              <div className="relative">
+                <span className="font-bold">
+                  {formatCurrency(product.price)}
+                </span>
+                <div className="absolute w-full h-[2px] bottom-[-1px] bg-black"></div>
+              </div>
+            </div>
+            <p className="text-sm">{product.description}</p>
+            <div className="flex gap-x-3 pt-2">
+              <input
+                value={quantity}
+                onChange={(e: any) => setQuantity(e.target.value)}
+                className="w-[10%] border p-2 focus:border-black rounded-md"
+                type="number"
+              />
+              <button
+                onClick={handleAddToCart}
+                className="bg-black w-full text-white hover:opacity-80 rounded-md"
+              >
+                Thêm vào giỏ hàng
+              </button>
+            </div>
+            <div className="flex flex-col gap-y-3 mt-5">
+              <Collapse />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default MainProduct
+export default MainProduct;
