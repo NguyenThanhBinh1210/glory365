@@ -33,7 +33,6 @@ const Store = () => {
   }
   return (
     <div className='pb-10 border-b'>
-
       <div className='px-5 pt-10 md:px-3 lg:px-3 grid grid-cols-5 gap-x-8 md:max-w-[1180px] mx-auto'>
         <div className='col-span-5 lg:col-span-1'>
           <div className='mb-6'>

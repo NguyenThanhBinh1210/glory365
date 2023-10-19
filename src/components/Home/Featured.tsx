@@ -6,7 +6,6 @@ const Featured = () => {
       <div className='lg:max-w-[1180px] lg:mx-auto'>
         <h2 className='text-[19px] font-semibold text-center uppercase mb-4'>Sản phẩm nổi bật</h2>
         <ProductItem></ProductItem>
-        
       </div>
     </div>
   )

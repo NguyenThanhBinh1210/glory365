@@ -140,7 +140,6 @@ export const Row = ({ data, removeItem }: any) => {
   const [state, _] = useState(data)
   const [quantity, setQuantity] = useState(state.quantity)
 
-
   return (
     <tr>
       <td className='text-center p-5 bg-slate-100 border-gray-300 border'>

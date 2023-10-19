@@ -1,9 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getCartFromLS } from '~/utils/utils'
 import { formatCurrency } from './Cart'
+import { useState } from 'react'
 
 const Payment = () => {
   const carts = getCartFromLS()
+  const initialFromState = {
+    name: '',
+    email: '',
+    phone: '',
+    address: ''
+  }
+  const [formState, setFormState] = useState(initialFromState)
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState((prev) => ({ ...prev, [name]: event.target.value }))
+  }
   function calculateTotalPrice(data: any) {
     let total = 0
     for (const product of data) {
@@ -14,9 +25,13 @@ const Payment = () => {
     return total
   }
   const totalPrice = calculateTotalPrice(carts)
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(formState)
+  }
   return (
     <div className='p-3 pb-10 border-b'>
-      <form className='max-w-[1180px] mx-auto md:grid md:grid-cols-2 gap-x-8'>
+      <form onSubmit={handleSubmit} className='max-w-[1180px] mx-auto md:grid md:grid-cols-2 gap-x-8'>
         <div>
           <h3 className='py-6 text-[29px] font-semibold'>Thông tin thanh toán</h3>
           <div>
@@ -29,6 +44,8 @@ const Payment = () => {
                 type='text'
                 name='name'
                 id='name'
+                onChange={handleChange('name')}
+                value={formState?.name}
                 className='bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full px-2.5 py-1.5 '
                 placeholder=''
               />
@@ -42,6 +59,8 @@ const Payment = () => {
                 type='text'
                 name='phone'
                 id='phone'
+                onChange={handleChange('phone')}
+                value={formState?.phone}
                 className='bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full px-2.5 py-1.5 '
                 placeholder=''
               />
@@ -55,6 +74,8 @@ const Payment = () => {
                 type='text'
                 name='email'
                 id='email'
+                onChange={handleChange('email')}
+                value={formState?.email}
                 className='bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full px-2.5 py-1.5 '
                 placeholder=''
               />
@@ -68,6 +89,8 @@ const Payment = () => {
                 type='text'
                 name='address'
                 id='address'
+                onChange={handleChange('address')}
+                value={formState?.address}
                 className='bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full px-2.5 py-1.5 '
                 placeholder=''
               />
@@ -85,8 +108,12 @@ const Payment = () => {
             <tbody>
               {carts.map((item: any, index: number) => (
                 <tr key={index}>
-                  <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{item.title} x {item.quantity}</td>
-                  <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{formatCurrency(item.price * item.quantity)}</td>
+                  <td className='text-center p-5 bg-slate-100 border-gray-300 border'>
+                    {item.title} x {item.quantity}
+                  </td>
+                  <td className='text-center p-5 bg-slate-100 border-gray-300 border'>
+                    {formatCurrency(item.price * item.quantity)}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -108,7 +135,9 @@ const Payment = () => {
         </div>
         <div className='flex justify-center mt-5'>
           <div className='mt-2 w-full hover:bg-white hover:text-black bg-black text-white rounded-full border-[1px] hover:border-black  transition'>
-            <button className='  h-[38px] uppercase rounded-full px-5 text-[14px] w-full '>Đặt hàng</button>
+            <button type='submit' className='  h-[38px] uppercase rounded-full px-5 text-[14px] w-full '>
+              Đặt hàng
+            </button>
           </div>
         </div>
       </form>

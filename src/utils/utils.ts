@@ -9,4 +9,3 @@ export const getCartFromLS = () => {
 // export const removeCartFromLS = () => {
 //   localStorage.removeItem('cart', JSON.stringify(cart_id))
 // }
-
