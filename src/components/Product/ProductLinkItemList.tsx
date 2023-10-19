@@ -14,12 +14,12 @@ function formatCurrency(price: number): string {
   }).format(price);
 }
 
-const ProductLinkItem: React.FC = () => {
+const ProductLinkItemList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     fetch(
-      "https://api-glory365.onrender.com/api/v1/product/get-all-product?page=1&limit=8"
+      `https://api-glory365.onrender.com/api/v1/get-product-by-category?categoryId=${}&limit=2&page=1`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -55,4 +55,4 @@ const ProductLinkItem: React.FC = () => {
   );
 };
 
-export default ProductLinkItem;
+export default ProductLinkItemList;

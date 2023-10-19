@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from "react"
-import ProductLinkItem from '~/components/Product/ProductLinkItem'
+import ProductLinkItemList from '~/components/Product/ProductLinkItemList'
 interface Category {
   [x: string]: any
   _id: string
   nameCategory: string
 }
-const Store = () => {
+const ListStore = () => {
   const [category, setCategores] = useState<Category[]>([]);
   useEffect(() => {
     fetch(
@@ -37,7 +37,7 @@ const Store = () => {
           </div>
         </div>
         <div className='col-span-5 gap-y-4 gap-x-6 lg:col-span-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-          <ProductLinkItem />
+          <ProductLinkItemList />
         </div>
       </div>
       <nav aria-label='Page navigation example' className=' w-max mx-auto mt-3 flex justify-center'>
@@ -105,4 +105,4 @@ const Store = () => {
   )
 }
 
-export default Store
+export default ListStore

@@ -17,8 +17,8 @@ function formatCurrency(price: number): string {
   }).format(price);
 }
 const MainProduct: React.FC = () => {
-  const [product, setProduct] = useState<Product | null>(null)
-  const { slug } = useParams<{ slug: string }>()
+  const [product, setProduct] = useState<Product | null>(null);
+  const { slug } = useParams<{ slug: string }>();
   useEffect(() => {
     console.log("Slug:", slug);
     fetch(
@@ -33,8 +33,8 @@ const MainProduct: React.FC = () => {
       });
   }, [slug]);
   // const [cartState, setCartState] = React.useState<Product[]>([]);
-   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [cartState, _] = React.useState(getCartFromLS())
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cartState, _] = React.useState(getCartFromLS());
   const [quantity, setQuantity] = React.useState(1);
   const [showCart, setShowCart] = React.useState(false);
 
@@ -55,9 +55,11 @@ const MainProduct: React.FC = () => {
           <div className="flex items-center">
             {product ? `${product.title} đã được thêm vào giỏ hàng.` : ""}
           </div>
-          <button className="bg-[#cacaca] w-[200px] h-[40px] rounded-md">
-            <Link to="/gio-hang">Xem giỏ hàng</Link>
-          </button>
+          <Link to="/gio-hang">
+            <button className="bg-[#cacaca] w-[200px] h-[40px] rounded-md">
+              Xem giỏ hàng
+            </button>
+          </Link>
         </div>
       )}
       {product && (

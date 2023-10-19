@@ -46,6 +46,14 @@ const router = createBrowserRouter([
     )
   },
   {
+    path: '/danh-muc/:slugCategory',
+    element: (
+      <HomeLayout>
+        <Store />
+      </HomeLayout>
+    )
+  },
+  {
     path: '/cua-hang/:slug',
     element: (
       <HomeLayout>
