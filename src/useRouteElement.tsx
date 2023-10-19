@@ -10,6 +10,7 @@ import Return from './pages/Return'
 import BlogDetail from './pages/BlogDetail'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import Payment from './pages/Payment'
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
     element: (
       <HomeLayout>
         <Cart />
+      </HomeLayout>
+    )
+  },
+  {
+    path: '/thanh-toan',
+    element: (
+      <HomeLayout>
+        <Payment />
       </HomeLayout>
     )
   },
