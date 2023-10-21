@@ -25,6 +25,9 @@ const Payment: React.FC = () => {
     xa: '',
     mota: '',
     isPayment: false,
+    Sum: 0,
+    soDon: 0,
+    quantity: 0,
     products: [...carts]
   })
 
@@ -67,7 +70,11 @@ const Payment: React.FC = () => {
       setWardList([])
     }
   }, [formState.quan, districtList])
-
+  useEffect(() => {
+    const total = calculateTotalPrice(carts)
+    // const totalQuantity = calculateTotalQuantity(carts)
+    setFormState((prev) => ({ ...prev, Sum: total}))
+  }, [carts])
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.currentTarget
     setFormState((prev) => ({ ...prev, [name]: value }))
@@ -85,7 +92,6 @@ const Payment: React.FC = () => {
   }
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    // console.log(formState);
     if (!validateEmail(formState.email)) {
       alert('Email không hợp lệ. Vui lòng nhập email hợp lệ.')
     } else {
@@ -110,6 +116,9 @@ const Payment: React.FC = () => {
             xa: '',
             mota: '',
             isPayment: false,
+            Sum: 0,
+            soDon: 0,
+            quantity: 0,
             products: []
           })
         }
@@ -129,7 +138,10 @@ const Payment: React.FC = () => {
     }
     return total
   }
-
+  // function calculateTotalQuantity(data: any) {
+  //   return data.reduce((total, item) => total + item.quantity, 0);
+  // }
+  
   const totalPrice = calculateTotalPrice(carts)
   const cityOptions = cityList.map((item: any) => (
     <option key={item.code} value={item.name}>
