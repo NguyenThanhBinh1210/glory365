@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import { getCartFromLS, setCartFromLS } from '~/utils/utils';
+import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { getCartFromLS, setCartFromLS } from '~/utils/utils'
 
 interface Product {
   [x: string]: any

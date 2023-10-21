@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 interface Product {
@@ -32,7 +33,7 @@ const ProductItem: React.FC = () => {
     <>
       <div className='grid grid-cols-2 gap-x-[30px] gap-y-[30px] lg:grid-cols-4'>
         {products.map((product) => (
-          <Link to={`/cua-hang/${product.slug}`}>
+          <Link key={product._id} to={`/cua-hang/${product.slug}`}>
             <div key={product._id} className='rounded-lg overflow-hidden'>
               <img src={product.image} alt={product.title} />
               <div className='p-6 text-center'>

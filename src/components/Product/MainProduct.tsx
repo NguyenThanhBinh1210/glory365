@@ -18,7 +18,7 @@ function formatCurrency(price: number): string {
   }).format(price)
 }
 const MainProduct: React.FC = () => {
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<Product | null>(null)
   const { slug } = useParams<{ slug: string }>()
   useEffect(() => {
     fetch(`https://api-glory365.onrender.com/api/v1/product/get-detail-product?slug=${slug}`)

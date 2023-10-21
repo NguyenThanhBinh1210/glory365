@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className=' md:pt-2 border-b pb-10 md:pb-16'>
       <Banner />
-      <Featured  />
+      <Featured />
       <div className='px-2 md:px-0'>
         <Ads />
         <Commit />

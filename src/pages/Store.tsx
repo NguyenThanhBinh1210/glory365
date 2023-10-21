@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 import ProductLinkItem from '~/components/Product/ProductLinkItem'
 interface Category {
   [x: string]: any
@@ -7,19 +7,17 @@ interface Category {
   nameCategory: string
 }
 const Store = () => {
-  const [category, setCategores] = useState<Category[]>([]);
+  const [category, setCategores] = useState<Category[]>([])
   useEffect(() => {
-    fetch(
-      "https://api-glory365.onrender.com/api/v1/category/get-category"
-    )
+    fetch('https://api-glory365.onrender.com/api/v1/category/get-category')
       .then((response) => response.json())
       .then((data) => {
-        setCategores(data);
+        setCategores(data)
       })
       .catch((error) => {
-        console.error("Lỗi khi lấy sản phẩm từ API", error);
-      });
-  }, []);
+        console.error('Lỗi khi lấy sản phẩm từ API', error)
+      })
+  }, [])
   return (
     <div className='pb-10 border-b'>
       <div className='px-5 pt-10 md:px-3 lg:px-3 grid grid-cols-5 gap-x-8 md:max-w-[1180px] mx-auto'>
@@ -29,8 +27,7 @@ const Store = () => {
             <ul className='flex flex-col gap-y-3 text-[13.6px] text-[rgba(0,0,0,0.79)]'>
               {category.map((itemLi, indexLi) => (
                 <li key={indexLi}>
-                  <Link to={`/danh-muc/${itemLi.slugCategory}`}
-                  >{itemLi.nameCategory}</Link>
+                  <Link to={`/danh-muc/${itemLi.slugCategory}`}>{itemLi.nameCategory}</Link>
                 </li>
               ))}
             </ul>

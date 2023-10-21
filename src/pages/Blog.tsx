@@ -27,7 +27,6 @@ const Blog = () => {
           <BlogHomeItem />
         </div>
       </div>
-      
     </div>
   )
 }

@@ -2,46 +2,46 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { getCartFromLS, setCartFromLS } from '~/utils/utils';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { getCartFromLS, setCartFromLS } from '~/utils/utils'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function formatCurrency(price: number): string {
   return new Intl.NumberFormat('vi-VN', {
     style: 'currency',
-    currency: 'VND',
-  }).format(price);
+    currency: 'VND'
+  }).format(price)
 }
 
 const Cart = () => {
-  const [cartState, setCartState] = useState(getCartFromLS());
+  const [cartState, setCartState] = useState(getCartFromLS())
 
   function removeItem(index: number) {
-    const updatedCarts = [...cartState];
-    updatedCarts.splice(index, 1);
-    setCartFromLS(updatedCarts);
-    setCartState(updatedCarts); // Cập nhật trạng thái của giỏ hàng sau khi xóa
+    const updatedCarts = [...cartState]
+    updatedCarts.splice(index, 1)
+    setCartFromLS(updatedCarts)
+    setCartState(updatedCarts) // Cập nhật trạng thái của giỏ hàng sau khi xóa
   }
 
   function calculateTotalPrice(data: any) {
-    let total = 0;
+    let total = 0
     for (const product of data) {
-      const price = parseFloat(product.price);
-      const quantity = parseFloat(product.quantity);
-      total += price * quantity;
+      const price = parseFloat(product.price)
+      const quantity = parseFloat(product.quantity)
+      total += price * quantity
     }
-    return total;
+    return total
   }
 
   function updateQuantity(index: number, quantity: number) {
-    const updatedCarts = [...cartState];
-    updatedCarts[index].quantity = quantity;
-    setCartFromLS(updatedCarts); // Cập nhật giỏ hàng trong localStorage
-    setCartState(updatedCarts); // Cập nhật trạng thái của giỏ hàng
+    const updatedCarts = [...cartState]
+    updatedCarts[index].quantity = quantity
+    setCartFromLS(updatedCarts) // Cập nhật giỏ hàng trong localStorage
+    setCartState(updatedCarts) // Cập nhật trạng thái của giỏ hàng
   }
 
-  const totalPrice = calculateTotalPrice(cartState);
-  const navigate = useNavigate();
+  const totalPrice = calculateTotalPrice(cartState)
+  const navigate = useNavigate()
   return (
     <div className='p-3 pb-10 border-b max-w-[1180px] mx-auto'>
       <div className='md:hidden w-full flex flex-col gap-y-5'>
@@ -164,11 +164,11 @@ const Cart = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const Row = ({ data, removeItem, updateQuantity, index }: any) => {
-  const [quantity, setQuantity] = useState(data.quantity);
+  const [quantity, setQuantity] = useState(data.quantity)
 
   return (
     <tr>
@@ -193,7 +193,7 @@ export const Row = ({ data, removeItem, updateQuantity, index }: any) => {
           className='w-[50px] bg-white pl-4 py-2 border rounded-full'
           value={quantity}
           onChange={(e) => {
-            const newValue = parseInt(e.target.value);
+            const newValue = parseInt(e.target.value)
             if (!isNaN(newValue) && newValue > 0) {
               setQuantity(newValue)
               updateQuantity(index, newValue)
@@ -201,11 +201,10 @@ export const Row = ({ data, removeItem, updateQuantity, index }: any) => {
           }}
           type='number'
         />
-
       </td>
       <td className='text-center p-5 bg-slate-100 border-gray-300 border'>{formatCurrency(data.price * quantity)}</td>
     </tr>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart
