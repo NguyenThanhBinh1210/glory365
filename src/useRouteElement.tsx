@@ -3,12 +3,14 @@ import HomeLayout from './layouts/HomeLayout'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import Store from './pages/Store'
+import ListStore from './pages/ListStore'
 import Blog from './pages/Blog'
 import Terms from './pages/Terms'
 import Delivery from './pages/Delivery'
 import Return from './pages/Return'
 import BlogDetail from './pages/BlogDetail'
 import ProductDetail from './pages/ProductDetail'
+import Payment from './pages/Payment'
 import Cart from './pages/Cart'
 
 const router = createBrowserRouter([
@@ -46,10 +48,18 @@ const router = createBrowserRouter([
     )
   },
   {
+    path: '/thanh-toan',
+    element: (
+      <HomeLayout>
+        <Payment />
+      </HomeLayout>
+    )
+  },
+  {
     path: '/danh-muc/:slugCategory',
     element: (
       <HomeLayout>
-        <Store />
+        <ListStore />
       </HomeLayout>
     )
   },

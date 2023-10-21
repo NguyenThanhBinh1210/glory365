@@ -21,7 +21,7 @@ const Footer = () => {
     }
 
     const data = {
-      email: emailInput,
+      email: emailInput
     }
 
     fetch('https://api-glory365.onrender.com/api/v1/message/create', {
@@ -127,18 +127,17 @@ const Footer = () => {
           <p className='text-[14.6px] leading-5 text-[rgba(0,0,0,0.79)]'>
             Đăng ký các mẹo chăm sóc da, lời khuyên từ chuyên gia và các sự kiện từ Glo365.vn
           </p>
-          <form 
-            ref={formRef} autoComplete='false' action='#'
-            className='flex mt-3 flex-col items-start gap-y-3'>
+          <form ref={formRef} autoComplete='false' action='#' className='flex mt-3 flex-col items-start gap-y-3'>
             <input
               id='name'
               type='text'
-              name="email"
+              name='email'
               className='w-full px-2 py-1 h-[33px] bg-transparent border text-[14px] border-black focus:border-[1.5px] transition-all rounded-full outline-none'
               placeholder='Email'
             />
             <button
-              type="submit" onClick={handleSubmit}
+              type='submit'
+              onClick={handleSubmit}
               className='uppercase h-[33px] rounded-full py-1 text-[14px] w-full bg-black text-white'
             >
               Đăng ký

@@ -4,13 +4,11 @@ import { useState } from 'react'
 import { contentMenu } from './MenuHeader'
 import { Link } from 'react-router-dom'
 const LogoHeader = () => {
-
   const [isModalOpen, setModalOpen] = useState<boolean>(false)
   return (
     <div className='md:py-8 relative cursor-pointer py-5 px-3 border-b md:border-b-[0px]'>
       <div className='h-[33px] w-[100px] md:mx-auto md:w-[200px] md:h-[66px]'>
         <Link to='/'>
-
           <img src={Logo} alt='Logo' />
         </Link>
       </div>

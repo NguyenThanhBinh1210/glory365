@@ -1,8 +1,8 @@
 // import { Swich Routes, Route } from "react-router-dom";
-import CareAbout from "~/components/Product/CareAbout";
-import Evalute from "~/components/Product/Evalute";
-import MainProduct from "~/components/Product/MainProduct";
-import Shipping from "~/components/Product/Shipping";
+import CareAbout from '~/components/Product/CareAbout'
+import Evalute from '~/components/Product/Evalute'
+import MainProduct from '~/components/Product/MainProduct'
+import Shipping from '~/components/Product/Shipping'
 
 const ProductDetail = () => {
   return (
@@ -12,7 +12,7 @@ const ProductDetail = () => {
       <Evalute></Evalute>
       <Shipping></Shipping>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDetail;
+export default ProductDetail

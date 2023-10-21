@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const contentMenu = [
@@ -34,7 +34,7 @@ const MenuHeader = () => {
             {item.title}
           </NavLink>
         ))}
-        <div className='relative z-10 bg-white group cursor-pointer'>
+        {/* <div className='relative z-10 bg-white group cursor-pointer'>
           <h4>Brand</h4>
           <ul className='opacity-0  w-full invisible left-[-20px] transition-all duration-500 top-8 group-hover:opacity-100 group-hover:visible absolute bg-white'>
             <div className='absolute bg-transparent group-hover:h-[30px] top-[-30px] w-[70px] '></div>
@@ -48,7 +48,7 @@ const MenuHeader = () => {
               <Link to={'/'}>Doan van hau</Link>
             </li>
           </ul>
-        </div>
+        </div> */}
         {contentMenu.slice(2, 5).map((item, index) => (
           <NavLink
             key={index}

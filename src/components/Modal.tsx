@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 const Modal = ({ data, isOpen, onClose }: any) => {
   const modalRef = useRef<HTMLDivElement>(null)
   const handleModalClick = (e: React.MouseEvent) => {
@@ -71,21 +71,27 @@ const Modal = ({ data, isOpen, onClose }: any) => {
                 {item.title}
               </NavLink>
             ))}
-            <div className='relative group cursor-pointer py-2'>
+            {/* <div className='relative group cursor-pointer py-2'>
               <h4>Brand</h4>
               <ul className='opacity-0 z-10 invisible left-[-20px] transition-all duration-500 top-8 group-hover:opacity-100 group-hover:visible absolute bg-white'>
                 <div className='absolute bg-transparent group-hover:h-[30px] top-[-30px] w-[70px] '></div>
                 <li className='p-3 min-w-[200px]  hover:bg-[#54595F] hover:text-white transition-all'>
-                  <Link onClick={() => onClose()} to={'/'}>Nguyen thanh binh</Link>
+                  <Link onClick={() => onClose()} to={'/'}>
+                    Nguyen thanh binh
+                  </Link>
                 </li>
                 <li className='p-3 min-w-[200px]  hover:bg-[#54595F] hover:text-white transition-all'>
-                  <Link onClick={() => onClose()} to={'/'}>Trinh cong son</Link>
+                  <Link onClick={() => onClose()} to={'/'}>
+                    Trinh cong son
+                  </Link>
                 </li>
                 <li className='p-3 min-w-[200px]  hover:bg-[#54595F] hover:text-white transition-all'>
-                  <Link onClick={() => onClose()} to={'/'}>Doan van hau</Link>
+                  <Link onClick={() => onClose()} to={'/'}>
+                    Doan van hau
+                  </Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
