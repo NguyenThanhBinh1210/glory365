@@ -13,7 +13,7 @@ const BlogTip = () => {
           <div className='mt-2 hover:bg-white hover:text-black bg-black text-white rounded-full border-[1px] hover:border-black  transition'>
             <button 
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              onClick={(e)=>navigate('/cua-hang')}
+              onClick={() => navigate('/cua-hang')}
               className='  h-[38px] uppercase rounded-full px-5 text-[14px] w-[max] '>Xem thêm</button>
           </div>
         </div>

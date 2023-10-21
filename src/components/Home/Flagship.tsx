@@ -17,7 +17,7 @@ const Flagship = () => {
         <div className='mx-auto mt-5 border w-max rounded-full border-black'>
           <button 
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            onClick={(e)=>navigate('/cua-hang')}
+            onClick={()=>navigate('/cua-hang')}
             className='bg-white hover:bg-black hover:text-white transition-all uppercase px-5 py-2.5  border-[2px] border-black rounded-full'>
             Khám phá
           </button>
