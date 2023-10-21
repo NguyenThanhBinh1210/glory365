@@ -19,21 +19,27 @@ function formatCurrency(price: number): string {
 
 const ProductLinkItem: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([])
+  console.log(products);
   const [cart, setCart] = useState<Product[]>(getCartFromLS())
   const [showProductButton, setShowProductButton] = useState<{
     [key: string]: boolean
   }>({})
   const [currentPage, setCurrentPage] = useState(1)
-  const totalPages = 6
+  const itemsPerPage = 8
+  // const totalPages = 6
+  const totalPages = Math.ceil(products?.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const currentData = products?.slice(startIndex, endIndex)
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage)
     }
   }
-  const fetchProductsByPage = async (currentPage: number) => {
+  const fetchProductsByPage = async () => {
     try {
       const response = await fetch(
-        `https://api-glory365.onrender.com/api/v1/product/get-all-product?page=${currentPage}&limit=8`
+        `https://api-glory365.onrender.com/api/v1/product/get-all-product`
       )
       if (!response.ok) {
         throw new Error('Không thể tải dữ liệu sản phẩm')
@@ -45,7 +51,7 @@ const ProductLinkItem: React.FC = () => {
     }
   }
   useEffect(() => {
-    fetchProductsByPage(currentPage)
+    fetchProductsByPage()
   }, [currentPage])
 
   const handleAddToCart = (product: Product) => {
@@ -70,7 +76,7 @@ const ProductLinkItem: React.FC = () => {
   return (
     <div className='col-span-5 gap-y-4 gap-x-6 lg:col-span-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
       <div className='col-span-5 gap-y-4 gap-x-6 lg:col-span-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-        {products.map((product) => (
+        {currentData.map((product) => (
           <div key={product._id}>
             <Link to={`/cua-hang/${product.slug}`}>
               <div className='rounded-xl  overflow-hidden'>
@@ -125,11 +131,15 @@ const ProductLinkItem: React.FC = () => {
             </svg>
             <span className='leading-4'>Previous</span>
           </button>
-          {Array.from({ length: 3 }, (_, index) => (
+          {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
               onClick={() => handlePageChange(index + 1)}
-              className='flex items-center justify-center px-2 md:px-4 h-6 md:h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 '
+              className={
+                currentPage === index + 1
+                  ? 'z-10 flex items-center justify-center px-4 h-10 leading-tight  border border-blue-300  bg-gray-100 text-gray-700 '
+                  : 'flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 '
+              }
             >
               {index + 1}
             </button>
