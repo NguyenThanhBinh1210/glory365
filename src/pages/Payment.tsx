@@ -65,16 +65,19 @@ const Payment: React.FC = () => {
       if (selectedDistrict) {
         const wards = selectedDistrict.wards
         setWardList(wards)
+          const total = calculateTotalPrice(carts)
+    // const totalQuantity = calculateTotalQuantity(carts)
+    setFormState((prev) => ({ ...prev, Sum: total}))
       }
     } else {
       setWardList([])
     }
   }, [formState.quan, districtList])
-  useEffect(() => {
-    const total = calculateTotalPrice(carts)
-    // const totalQuantity = calculateTotalQuantity(carts)
-    setFormState((prev) => ({ ...prev, Sum: total}))
-  }, [carts])
+  // useEffect(() => {
+  //   const total = calculateTotalPrice(carts)
+  //   // const totalQuantity = calculateTotalQuantity(carts)
+  //   setFormState((prev) => ({ ...prev, Sum: total}))
+  // }, [carts])
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.currentTarget
     setFormState((prev) => ({ ...prev, [name]: value }))
