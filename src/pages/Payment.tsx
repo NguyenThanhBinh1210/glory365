@@ -98,8 +98,8 @@ const Payment: React.FC = () => {
         })
         if (response.status === 200) {
           alert('Đặt hàng thành công')
-          navigate('/')
-          localStorage.removeItem('cart')
+          localStorage.setItem('cart', JSON.stringify([]))
+          navigate('/gio-hang')
           setFormState({
             name: '',
             email: '',
