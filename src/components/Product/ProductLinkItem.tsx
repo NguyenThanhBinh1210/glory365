@@ -26,7 +26,6 @@ const ProductLinkItem: React.FC = () => {
   }>({})
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 8
-  // const totalPages = 6
   const totalPages = Math.ceil(products?.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage

@@ -28,6 +28,7 @@ const Payment: React.FC = () => {
     Sum: 0,
     soDon: 0,
     quantity: 0,
+    code:'',
     products: [...carts]
   })
 
@@ -65,19 +66,24 @@ const Payment: React.FC = () => {
       if (selectedDistrict) {
         const wards = selectedDistrict.wards
         setWardList(wards)
-          const total = calculateTotalPrice(carts)
-    // const totalQuantity = calculateTotalQuantity(carts)
-    setFormState((prev) => ({ ...prev, Sum: total}))
-      }
-    } else {
+        const total = calculateTotalPrice(carts)
+        const totalQuantity = calculateTotalQuantity(carts)
+        const randomOrderCode = generateRandomOrderCode(6)
+        const sumQuantity = SumQuantity(carts)
+        setFormState((prev) => ({
+          ...prev,
+          Sum: total,
+          soDon: totalQuantity,
+          quantity: sumQuantity,
+          code: randomOrderCode
+        }))
+        // const updatedCarts = carts.map((item: any) => ({ ...item, code: formState.code }))
+        
+        }
+    } else {  
       setWardList([])
     }
-  }, [formState.quan, districtList])
-  // useEffect(() => {
-  //   const total = calculateTotalPrice(carts)
-  //   // const totalQuantity = calculateTotalQuantity(carts)
-  //   setFormState((prev) => ({ ...prev, Sum: total}))
-  // }, [carts])
+  }, [formState.quan, districtList, carts])
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.currentTarget
     setFormState((prev) => ({ ...prev, [name]: value }))
@@ -85,6 +91,15 @@ const Payment: React.FC = () => {
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget
     setFormState((prev) => ({ ...prev, [name]: value }))
+  }
+  const generateRandomOrderCode = (length: any) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    let result = ''
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length)
+      result += characters.charAt(randomIndex)
+    }
+    return result
   }
   const axiosInstance = axios.create({
     timeout: 4000
@@ -106,24 +121,35 @@ const Payment: React.FC = () => {
           }
         })
         if (response.status === 200) {
-          alert('Đặt hàng thành công')
-          localStorage.setItem('cart', JSON.stringify([]))
-          navigate('/gio-hang')
-          setFormState({
-            name: '',
-            email: '',
-            phone: '',
-            note: '',
-            tinh: '',
-            quan: '',
-            xa: '',
-            mota: '',
-            isPayment: false,
-            Sum: 0,
-            soDon: 0,
-            quantity: 0,
-            products: []
-          })
+          if (formState.isPayment) {
+            alert('Đặt hàng thành công')
+            navigate('/order-payment')
+            const updatedCarts = [...carts]
+            for (const item of updatedCarts) {
+              item.code = formState.code
+            }
+            localStorage.setItem('cart', JSON.stringify(updatedCarts))
+          } else {
+            alert('Đặt hàng thành công')
+            navigate('/gio-hang')
+            localStorage.setItem('cart', JSON.stringify([]))
+            setFormState({
+              name: '',
+              email: '',
+              phone: '',
+              note: '',
+              tinh: '',
+              quan: '',
+              xa: '',
+              mota: '',
+              isPayment: false,
+              Sum: 0,
+              soDon: 0,
+              code: '',
+              quantity: 0,
+              products: []
+            })
+          }
         }
       } catch (error) {
         console.error('Lỗi từ phía server:', error)
@@ -141,10 +167,18 @@ const Payment: React.FC = () => {
     }
     return total
   }
-  // function calculateTotalQuantity(data: any) {
-  //   return data.reduce((total, item) => total + item.quantity, 0);
-  // }
-  
+  function calculateTotalQuantity(data: any[]) {
+    const totalQuantity = data.filter((item) => item.quantity !== undefined)
+    const count = totalQuantity.length
+    return count
+  }
+  function SumQuantity(data: any[]) {
+    let sumQuantity = 0
+    for (const item of data) {
+      sumQuantity += item.quantity
+    }
+    return sumQuantity
+  }
   const totalPrice = calculateTotalPrice(carts)
   const cityOptions = cityList.map((item: any) => (
     <option key={item.code} value={item.name}>

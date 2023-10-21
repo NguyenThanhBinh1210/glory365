@@ -1,4 +1,6 @@
 import BannerTrai from '~/assets/images/banner500x500trai.jpg'
+import BannerTrai1 from '~/assets/images/banner500x500giua.jpg'
+import BannerTrai2 from '~/assets/images/banner500x500phai.jpg'
 
 const Beauty = () => {
   return (
@@ -12,13 +14,13 @@ const Beauty = () => {
         </div>
         <div className=' col-span-3 md:col-span-1 '>
           <div className='rounded-lg w-[80%] mx-auto  md:h-[380px] overflow-hidden'>
-            <img className='w-full h-full object-cover' src={BannerTrai} alt='BannerTrai' />
+            <img className='w-full h-full object-cover' src={BannerTrai1} alt='BannerTrai' />
           </div>
           <h4 className='uppercase text-[20px] py-4 text-center font-semibold'>THỰC PHẨM BỔ SUNG</h4>
         </div>
         <div className=' col-span-3 md:col-span-1 '>
           <div className='rounded-lg w-[80%] mx-auto  md:h-[380px] overflow-hidden'>
-            <img className='w-full h-full object-cover' src={BannerTrai} alt='BannerTrai' />
+            <img className='w-full h-full object-cover' src={BannerTrai2} alt='BannerTrai' />
           </div>
           <h4 className='uppercase text-[20px] py-4 text-center font-semibold'>MẶT NẠ DƯỠNG ẨM</h4>
         </div>

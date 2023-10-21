@@ -12,6 +12,7 @@ import BlogDetail from './pages/BlogDetail'
 import ProductDetail from './pages/ProductDetail'
 import Payment from './pages/Payment'
 import Cart from './pages/Cart'
+import OrderPayment from './pages/OrderPayment'
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,14 @@ const router = createBrowserRouter([
     element: (
       <HomeLayout>
         <Cart />
+      </HomeLayout>
+    )
+  },
+  {
+    path: '/order-payment',
+    element: (
+      <HomeLayout>
+        <OrderPayment />
       </HomeLayout>
     )
   },

@@ -1,7 +1,7 @@
 import ImgBanner from '~/assets/images/Cover-50-Blog.jpg'
 import ImgBanner1 from '~/assets/images/image3.png'
 import ImgBanner2 from '~/assets/images/123929612_3010328545774831_2432880206062231453_o_1200x1200-1024x1024.jpeg'
-import BlogChipItem from '~/components/Blog/BlogChipItem'
+import BlogChipItemNew from '~/components/Blog/BlogChipItemNew'
 
 const BlogDetail = () => {
   return (
@@ -88,10 +88,7 @@ const BlogDetail = () => {
           <div>
             <h3 className='font-semibold uppercase text-[18px] mb-4'>NỘI DUNG MỚI</h3>
             <div className='flex flex-col gap-y-6'>
-              <BlogChipItem></BlogChipItem>
-              <BlogChipItem></BlogChipItem>
-              <BlogChipItem></BlogChipItem>
-              <BlogChipItem></BlogChipItem>
+              <BlogChipItemNew />
             </div>
           </div>
         </div>

@@ -1,27 +1,21 @@
 import { Link } from 'react-router-dom'
-import Img1 from '~/assets/images/Cover-30-Blog-1024x565.jpg'
-import Img2 from '~/assets/images/Cover-20-Blog-1024x565.jpg'
-import Img3 from '~/assets/images/Cover-Morpheus8-Blog-1-1024x565.jpg'
+import Img1 from '~/assets/images/Cover-50-Blog-300x165.jpg'
+import Img2 from '~/assets/images/Cover-40-Blog-1-1024x565.jpg'
 
 const BlogTag = [
   {
-    slug: 'tong-hop-tips-cham-soc-da-tuoi-30-giup-chong-lai-lao-hoa',
-    name: 'TỔNG HỢP TIPS CHĂM SÓC DA TUỔI 30 GIÚP CHỐNG LẠI LÃO HOÁ',
+    slug: 'bi-quyet-so-huu-lan-da-dep-o-tuoi-50',
+    name: 'BÍ QUYẾT SỞ HỮU LÀN DA ĐẸP Ở TUỔI 50',
     image: Img1,
   },
   {
-    slug: '9-tips-cham-soc-da-tuoi-20-luon-tuoi-tre-tu-bac-si-da-lieu',
-    name: '9 TIPS CHĂM SÓC DA TUỔI 20 LUÔN TƯƠI TRẺ TỪ BÁC SĨ DA LIỄU',
+    slug: 'chong-lao-hoa-da-tuoi-40-tuong-kho-ma-de',
+    name: 'CHỐNG LÃO HÓA DA TUỔI 40 – TƯỞNG KHÓ MÀ DỄ',
     image: Img2,
-  },
-  {
-    slug: 'morpheus8-giai-phap-tre-hoa-hang-dau-the-gioi',
-    name: 'MORPHEUS8 – GIẢI PHÁP TRẺ HÓA HÀNG ĐẦU THẾ GIỚI',
-    image: Img3,
   }
 ]
 
-const BlogTagItem = () => {
+const BlogTagItems = () => {
   return (
     <>
     {BlogTag.map((item) => (
@@ -47,4 +41,4 @@ const BlogTagItem = () => {
   )
 }
 
-export default BlogTagItem
+export default BlogTagItems

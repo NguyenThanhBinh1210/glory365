@@ -19,7 +19,6 @@ const ProductItem: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    // Gửi yêu cầu API để lấy danh sách sản phẩm
     fetch('https://api-glory365.onrender.com/api/v1/product/get-all-product?page=1&limit=8')
       .then((response) => response.json())
       .then((data) => {

@@ -1,6 +1,7 @@
 import BannerTrai from '~/assets/images/bannerclinic-1.jpg'
-
+import { useNavigate } from 'react-router-dom'
 const Flagship = () => {
+  const navigate = useNavigate()
   return (
     <div>
       <div className='md:px-3 lg:px-0 lg:max-w-[1180px] lg:mx-auto'>
@@ -14,7 +15,10 @@ const Flagship = () => {
           <img className='w-full h-full object-cover' src={BannerTrai} alt='BannerTrai' />
         </div>
         <div className='mx-auto mt-5 border w-max rounded-full border-black'>
-          <button className='bg-white hover:bg-black hover:text-white transition-all uppercase px-5 py-2.5  border-[2px] border-black rounded-full'>
+          <button 
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            onClick={(e)=>navigate('/cua-hang')}
+            className='bg-white hover:bg-black hover:text-white transition-all uppercase px-5 py-2.5  border-[2px] border-black rounded-full'>
             Khám phá
           </button>
         </div>
